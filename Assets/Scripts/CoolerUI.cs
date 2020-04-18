@@ -11,12 +11,12 @@ public class CoolerUI : MonoBehaviour
     private bool _isActive;
     public Text coolerName;
     public Text coolText;
-
-
+    public Text SellText;
     void Start()
     {
         canvas.SetActive(false);
         _isActive = false;
+
     }
 
     // Update is called once per frame
@@ -73,7 +73,19 @@ public class CoolerUI : MonoBehaviour
             //set stats:
             coolerName.text = _cooler.coolerName;
             coolText.text = "Cooling Capacity: "+(_cooler.coolingFactor*1000).ToString("F2");
-
+            SellText.text = "Sell: $"+_cooler.sellPrice.ToString();
         }
     }
+
+    public void Sell()
+    {
+        if (_cooler!= null)
+        {
+            _cooler.Sell();
+          
+        }
+        _isActive = false;
+        canvas.SetActive(false);
+    }
+    
 }

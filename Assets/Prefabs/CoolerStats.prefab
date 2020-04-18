@@ -370,7 +370,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 623210750727776413}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6073307862552106141}
+        m_MethodName: Sell
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &623210750799642450
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,6 +442,7 @@ MonoBehaviour:
   canvas: {fileID: 623210750295463132}
   coolerName: {fileID: 623210750637733541}
   coolText: {fileID: 623210750224546783}
+  SellText: {fileID: 623210750977270119}
 --- !u!1 &623210750849464989
 GameObject:
   m_ObjectHideFlags: 0

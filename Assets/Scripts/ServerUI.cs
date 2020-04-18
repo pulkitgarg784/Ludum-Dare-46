@@ -14,8 +14,8 @@ public class ServerUI : MonoBehaviour
     public Text load;
     public Text temp;
     public Text health;
-    public Text fact;
-
+    public Text SellText;
+    public Text RepairText;
     void Start()
     {
         canvas.SetActive(false);
@@ -71,9 +71,7 @@ public class ServerUI : MonoBehaviour
             }
         }
 
-      //  var n = Camera.main.transform.position - transform.position;
-       // var newRotation = Quaternion.LookRotation(n) * Quaternion.Euler(90, 0, 0);
-        //transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 1.0f);
+
         if (_server!=null)
         {
             //set stats:
@@ -82,6 +80,30 @@ public class ServerUI : MonoBehaviour
             load.text = "Server Load: "+_server.Serverload.ToString("F2") + "%";
             temp.text = "Temperature: "+_server.ServerTemp.ToString("F2") + "C";
             health.text ="Health: "+ _server.health.ToString("F2");
+            SellText.text = "Sell: $"+_server.finalSellPrice.ToString("F2");
+            RepairText.text = "Repair: $"+_server.repairCost.ToString("F2");
         }
+    }
+    public void Sell()
+    {
+        if (_server!= null)
+        {
+            _server.Sell();
+
+        }
+        _isActive = false;
+        canvas.SetActive(false);
+        
+    }
+
+    public void Repair()
+    {
+        if (_server!= null)
+        {
+            _server.RepairCaller();
+
+        }
+        _isActive = false;
+        canvas.SetActive(false);
     }
 }

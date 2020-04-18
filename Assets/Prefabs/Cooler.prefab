@@ -217,6 +217,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 256595b6bccea0d4ba463205cfc982af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cost: 100
   connectedServer: {fileID: 0}
+  coolerName: cool
   raycastpt: {fileID: 1941112848508142678}
   coolingFactor: 0.02

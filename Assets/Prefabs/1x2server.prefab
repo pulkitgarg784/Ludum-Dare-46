@@ -106,7 +106,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49eb9b241aad6a94397250e50603b9eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameManager: {fileID: 0}
+  cost: 1500
+  sellPrice: 75
+  repairCost: 0
+  RepairMat: {fileID: 2100000, guid: 0720bb2d22f47e948a884bd9d0e81d28, type: 2}
+  overheatMat: {fileID: 2100000, guid: e02d29f0877d5c24d891b9eb0d4fb233, type: 2}
+  finalSellPrice: 0
+  Servername: Server
   MaxSupportedVisitor: 750
   currentVisitors: 0
   ServerTemp: 25

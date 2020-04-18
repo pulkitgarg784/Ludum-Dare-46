@@ -10,8 +10,12 @@ public class GameManager : MonoBehaviour
     public static int TotalVisitors = 0;
 
     public static float money = 100;
-
+    public static float adsMultiplier = 0.00005f;
     public Text MoneyText;
+
+    public GameObject Prompt;
+
+    public Text PromptText;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,8 +26,22 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        money+=Mathf.CeilToInt(Time.deltaTime*TotalVisitors*0.005f);
-        MoneyText.text = "$ "+money;
+        money+=Time.deltaTime*TotalVisitors*adsMultiplier;//speed of money
+        MoneyText.text = "$ "+money.ToString("F2");
+    }
+
+    public void showPrompt(string prompt,float duration)
+    {
+        StartCoroutine(PromptUser(prompt,duration));
+    }
+
+    public IEnumerator PromptUser(string prompt, float duration)
+    {
+        Prompt.SetActive(true);
+        PromptText.text = prompt;
+        yield return new WaitForSeconds(duration);
+        PromptText.text = " ";
+        Prompt.SetActive(false);
     }
 
 

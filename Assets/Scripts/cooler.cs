@@ -5,15 +5,31 @@ using UnityEngine;
 
 public class cooler : MonoBehaviour
 {
+    public float cost = 100f;
+    public float sellPrice = 75f;
     public Server connectedServer;
     public string coolerName;
     public Transform raycastpt;
 
     public float coolingFactor = 0.01f;
+    private GameManager _gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        if (GameManager.money>=cost)
+        {
+            GameManager.money -= cost;
+            Debug.Log("Spawned Object");
+        }
+        else
+        {
+            _gameManager.showPrompt("You do not have enough money",1.5f);
+            Destroy(gameObject);
+            //prompt player
+        }
     }
 
     private void Update()
@@ -38,10 +54,18 @@ public class cooler : MonoBehaviour
 
     private void OnDestroy()
     {
-        connectedServer.coolingFactor -= coolingFactor;
+        if (connectedServer!=null)
+        {
+            connectedServer.coolingFactor -= coolingFactor;
+        }
     }
 
-    // Update is called once per frame
+    public void Sell()
+    {
+        GameManager.money += sellPrice;
+        Destroy(gameObject);
+        _gameManager.showPrompt("You sold "+coolerName+" for $"+ sellPrice.ToString("F2"),2);
+    }
 
 
   

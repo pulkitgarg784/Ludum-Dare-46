@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class cameraController : MonoBehaviour
 {
@@ -56,14 +57,7 @@ public class cameraController : MonoBehaviour
             newRot *= Quaternion.Euler(Vector3.up * -rotationAmount);
         }
 
-        if (Input.GetKey(KeyCode.R))
-        {
-            newZoom += zoomAmount;
-        }
-        if (Input.GetKey(KeyCode.F))
-        {
-            newZoom -= zoomAmount;
-        }
+
 
         newPos.x = Mathf.Clamp(newPos.x, -40, 40);
         newPos.z = Mathf.Clamp(newPos.z, -40, 40);
@@ -77,43 +71,51 @@ public class cameraController : MonoBehaviour
 
     void MouseInput()
     {
-        if (Input.mouseScrollDelta.y !=0)
+        if (!EventSystem.current.IsPointerOverGameObject())
         {
-            newZoom += Input.mouseScrollDelta.y * zoomAmount;
-        }
-        if (Input.GetMouseButtonDown(0))
-        {
-            Plane plane = new Plane(Vector3.up, Vector3.zero);
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            float start;
-            if (plane.Raycast(ray,out start))
-            {
-                dragStart = ray.GetPoint(start);
-            }
-        }
-        if (Input.GetMouseButton(0))
-        {
-            Plane plane = new Plane(Vector3.up, Vector3.zero);
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            float point;
-            if (plane.Raycast(ray,out point))
-            {
-                dragEnd = ray.GetPoint(point);
-                newPos = transform.position + (dragStart - dragEnd);
-            }
-        }
 
-        if (Input.GetMouseButtonDown(2))    
-        {
-            RotateStart = Input.mousePosition;
-        }
-        if (Input.GetMouseButton(2))
-        {
-            RotateEnd = Input.mousePosition;
-            Vector3 difference = RotateStart - RotateEnd;
-            RotateStart = RotateEnd;
-            
-            newRot*= Quaternion.Euler(Vector3.up*(-difference.x/5f));
+
+            if (Input.mouseScrollDelta.y != 0)
+            {
+                newZoom += Input.mouseScrollDelta.y * zoomAmount;
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                Plane plane = new Plane(Vector3.up, Vector3.zero);
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                float start;
+                if (plane.Raycast(ray, out start))
+                {
+                    dragStart = ray.GetPoint(start);
+                }
+            }
+
+            if (Input.GetMouseButton(0))
+            {
+                Plane plane = new Plane(Vector3.up, Vector3.zero);
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                float point;
+                if (plane.Raycast(ray, out point))
+                {
+                    dragEnd = ray.GetPoint(point);
+                    newPos = transform.position + (dragStart - dragEnd);
+                }
+            }
+
+            if (Input.GetMouseButtonDown(2))
+            {
+                RotateStart = Input.mousePosition;
+            }
+
+            if (Input.GetMouseButton(2))
+            {
+                RotateEnd = Input.mousePosition;
+                Vector3 difference = RotateStart - RotateEnd;
+                RotateStart = RotateEnd;
+
+                newRot *= Quaternion.Euler(Vector3.up * (-difference.x / 5f));
+            }
         }
     }
 }
