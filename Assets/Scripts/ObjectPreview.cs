@@ -1,0 +1,90 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ObjectPreview : MonoBehaviour
+{
+
+    private List<GameObject> obj = new List<GameObject>();//list of all buildings and walls the preview bumped into
+    private List<GroundTile> cubes = new List<GroundTile>();//list of all the ground cubes the preview is sitting ontop of/notice this is a GroundCube type list not a gameobject list 
+
+    public Material goodMat;//good material (green)
+    public Material badMat;//bad material (red)
+    public GameObject prefab;//---actual prefab
+
+    private MeshRenderer myRend;
+    private bool canBuild = false;
+
+
+    private void Start()
+    {
+        myRend = GetComponent<MeshRenderer>();
+        ChangeColor();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Hit");
+        if(other.CompareTag("Building") || other.CompareTag("Wall"))//hit a building or a wall?...... 
+        {
+            obj.Add(other.gameObject);//then stick it in the obj list.....
+            Debug.Log(obj.Count);
+            Debug.Log("hit obj");
+        }
+
+        if (other.CompareTag("Tile"))//hit a ground cube?.........
+        {
+            GroundTile groundTile = other.GetComponent<GroundTile>();//get the ground cube script that is sitting on this particular gameobject.....
+            cubes.Add(groundTile);//add it to the ground cubes list....
+        }
+        ChangeColor();//<----no check if the color should be green or red
+    }
+
+    //----this is the exact opposit of OnTriggerEnter
+    private void OnTriggerExit(Collider other)
+    {
+
+        if (other.CompareTag("Building") || other.CompareTag("Wall"))
+        {
+            obj.Remove(other.gameObject);//----notice we're removing it from the list
+        }
+
+        if (other.CompareTag("Tile"))
+        {
+            GroundTile groundTile = other.GetComponent<GroundTile>();
+            cubes.Remove(groundTile);//----removing it from the list
+        }
+        ChangeColor();
+    }
+
+    //Only concerned about the obj list (Buildings and Walls) if there is nothing in that list then we can build, if there is even 
+    // 1 thing in the list then you cant build
+    private void ChangeColor()
+    {
+        if(obj.Count == 0)//nothing in the list......
+        {
+            myRend.material = goodMat;// change color to green
+            canBuild = true;//you can build
+        }
+        else//something is in the list.....
+        {
+            myRend.material = badMat;//change to red
+            canBuild = false;//cant build
+        }
+    }
+
+    public void Build()
+    {
+
+
+        Instantiate(prefab, transform.position, transform.rotation);//spawn in the prefab(Actual Building this preview represents)
+        Destroy(gameObject);//destroy the preview
+
+    }
+
+    public bool CanBuild()//just returns the canBuild bool....this is so it cant accidently be changed by another script
+    {
+        return canBuild;
+    }
+
+}
