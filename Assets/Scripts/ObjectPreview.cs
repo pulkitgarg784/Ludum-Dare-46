@@ -24,12 +24,9 @@ public class ObjectPreview : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Hit");
         if(other.CompareTag("Building") || other.CompareTag("Wall"))//hit a building or a wall?...... 
         {
             obj.Add(other.gameObject);//then stick it in the obj list.....
-            Debug.Log(obj.Count);
-            Debug.Log("hit obj");
         }
 
         if (other.CompareTag("Tile"))//hit a ground cube?.........
