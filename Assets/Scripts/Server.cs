@@ -2,18 +2,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Server : MonoBehaviour
 {
     private GameManager _gameManager;
-
     public float cost;
     public float sellPrice = 75f;
     public float repairCost;
     public float electricityUsage = 1f;
 
     public Material RepairMat;
-    public Material overheatMat;
+
     private Material currentMat;
     
     [HideInInspector]
@@ -31,6 +31,10 @@ public class Server : MonoBehaviour
     private bool isActive = true;
     [HideInInspector]
     public float coolingFactor;
+    
+    public GameObject FireParticles;
+    bool isburning;
+    private bool textshown;
     private void Start()
     {
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -69,7 +73,13 @@ public class Server : MonoBehaviour
         if (health<=0)
         {
             health = 0;
-            Debug.Log("Server Destroyed");
+            if (!textshown)
+            {
+                _gameManager.showPrompt("Server destroyed due to overheating",2f);
+                textshown = true;
+            }
+
+            Destroy(gameObject);
             return;
         }
 
@@ -79,13 +89,13 @@ public class Server : MonoBehaviour
         }
         if (ServerTemp>25)
         {
-            ServerTemp -= coolingFactor;
+            ServerTemp -= coolingFactor;//TODO: time.deltatime
         }
         if (isHeating)
         {
             if (ServerTemp<45)
             {
-                ServerTemp += Heatingfactor;
+                ServerTemp += Heatingfactor;//TODO:time.deltatime
             }
         }
         if (Serverload>75)
@@ -96,11 +106,15 @@ public class Server : MonoBehaviour
         if (ServerTemp>40)
         {
             health -= (ServerTemp - 40) / 200;
-            GetComponent<MeshRenderer>().material = overheatMat;
+            if (!isburning)
+            {
+                GameObject fire = Instantiate(FireParticles, transform.position, Quaternion.identity,transform);
+                isburning = true;
+            }
         }
         else if (ServerTemp<40)
         {
-            GetComponent<MeshRenderer>().material = currentMat;
+
         }
         
         
@@ -141,7 +155,7 @@ public class Server : MonoBehaviour
     {
         Debug.Log("Start repair");
         isActive = false;
-        GetComponent<MeshRenderer>().material = RepairMat;
+      GetComponent<MeshRenderer>().material = RepairMat;
         GameManager.TotalVisitors -= currentVisitors;
         GameManager.VisitorLimit -= MaxSupportedVisitor;
         
@@ -155,7 +169,7 @@ public class Server : MonoBehaviour
         ServerTemp = 25;
         health = 100;
         Serverload = 0;
-        GetComponent<MeshRenderer>().material = currentMat;
+       GetComponent<MeshRenderer>().material = currentMat;
         _gameManager.showPrompt("Done Repairing "+Servername,1.5f);
         
     }
@@ -173,7 +187,6 @@ public class Server : MonoBehaviour
     {
         if (isActive)
         {
-            Debug.Log("adding visitor");
 
 
             yield return new WaitForSeconds(.05f); //delay in adding visitors

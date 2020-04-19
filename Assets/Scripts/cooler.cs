@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class cooler : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class cooler : MonoBehaviour
     public float coolingFactor = 0.01f;
     private GameManager _gameManager;
 
+    public GameObject FireParticles;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +33,8 @@ public class cooler : MonoBehaviour
             Destroy(gameObject);
             //prompt player
         }
+        StartCoroutine(RandomFire());
+
     }
 
     private void Update()
@@ -46,10 +50,12 @@ public class cooler : MonoBehaviour
                 if (hit.collider.gameObject.GetComponent<Server>()!= null)
                 {
                     connectedServer = hit.collider.gameObject.GetComponent<Server>();
-                    connectedServer.coolingFactor += coolingFactor;
+                    connectedServer.coolingFactor += coolingFactor;//TODO:make delta time
                 }
             }
         }
+
+
         
     }
 
@@ -78,6 +84,21 @@ public class cooler : MonoBehaviour
         }
     }
 
+    IEnumerator RandomFire()
+    {
+        if (GameManager.TotalVisitors>2500)
+        {
+            if (Random.Range(0,20)==5)
+            {
+                Debug.Log("<color=red>Fire</color>",this);
+                Instantiate(FireParticles, transform.position, Quaternion.identity,transform);
+                Destroy(gameObject,10f);
+
+            }
+        }
+        yield return new WaitForSeconds(1);
+        StartCoroutine(RandomFire());
+    }
 
   
 }

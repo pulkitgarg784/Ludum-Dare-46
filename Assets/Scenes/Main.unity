@@ -1080,7 +1080,7 @@ MonoBehaviour:
         m_MethodName: StartBuild
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 3594764859769296041, guid: 2df8dffe04516c04d8d2661b571cf107,
+          m_ObjectArgument: {fileID: 3967953476789476116, guid: d5a5efd69d259ae499c187e0e07fa31a,
             type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
@@ -1538,7 +1538,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1523920040}
-  m_RootOrder: 6
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -2749,7 +2749,7 @@ RectTransform:
   - {fileID: 28390498}
   - {fileID: 1819086168}
   m_Father: {fileID: 1523920040}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3673,7 +3673,7 @@ MonoBehaviour:
         m_MethodName: StartBuild
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 3594764859769296041, guid: ee0e60c96b2f0e34c917a5f519006ede,
+          m_ObjectArgument: {fileID: 5582869335147856701, guid: 287e3dfa9ca53214f97468196284d305,
             type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
@@ -3835,7 +3835,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 377.5326, y: -21.502884}
+  m_AnchoredPosition: {x: 377.5326, y: -21.50293}
   m_SizeDelta: {x: 475.09, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1228215945
@@ -4270,7 +4270,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f406a296168604fa216d2bfeca86a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildPanel: {fileID: 478432329}
   buildSystem: {fileID: 1321181457}
 --- !u!114 &1321181457
 MonoBehaviour:
@@ -4319,6 +4318,9 @@ MonoBehaviour:
   MoneyText: {fileID: 1841004107}
   Prompt: {fileID: 1359794047}
   PromptText: {fileID: 1855514244}
+  UICanvas: {fileID: 1523920036}
+  HackPanel: {fileID: 3395898307430314629, guid: 96ecdc86234c4ba45bbc60d305c79f2e,
+    type: 3}
   MoneyPanel: {fileID: 892545255}
   BillPanel: {fileID: 1819086167}
 --- !u!114 &1321181460
@@ -4333,10 +4335,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74bad0175ae059447b2bca2cb35112da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeScale: 500
+  timeScale: 50
   timeMode: 2
   startHour: 0
-  startDay: 25
+  startDay: 1
   startMonth: 12
   startYear: 2020
   monthName: 
@@ -4428,7 +4430,7 @@ RectTransform:
   m_Children:
   - {fileID: 1855514243}
   m_Father: {fileID: 1523920040}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -4698,7 +4700,7 @@ RectTransform:
   - {fileID: 431009001}
   - {fileID: 1866622531}
   m_Father: {fileID: 1523920040}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -5089,13 +5091,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1841004106}
   - {fileID: 2134019427}
+  - {fileID: 580159335}
+  - {fileID: 1841004106}
   - {fileID: 1469123748}
   - {fileID: 2058120208}
   - {fileID: 892545256}
   - {fileID: 1359794048}
-  - {fileID: 580159335}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6578,12 +6580,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1523920040}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 80, y: -15}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 58.430054, y: -26.01001}
+  m_SizeDelta: {x: 116.86, y: 52.03}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1841004107
 MonoBehaviour:
@@ -6607,10 +6609,10 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -7367,7 +7369,7 @@ RectTransform:
   - {fileID: 920409308}
   - {fileID: 1849567593}
   m_Father: {fileID: 1523920040}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -7701,7 +7703,7 @@ RectTransform:
   - {fileID: 783633612}
   - {fileID: 555184206}
   m_Father: {fileID: 1523920040}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

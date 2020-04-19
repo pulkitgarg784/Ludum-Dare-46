@@ -54,7 +54,6 @@ public class BuildSystem : MonoBehaviour
         preview = null;//not sure if you need this actually
         previewScript = null;//
         isBuilding = false;
-        selector.TogglePanel();//toggle the button panel back on
     }
 
     private void BuildIt()//actually build the thing

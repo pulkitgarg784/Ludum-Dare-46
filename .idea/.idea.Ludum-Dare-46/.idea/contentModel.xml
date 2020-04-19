@@ -6,12 +6,11 @@
     <e p="C:\Users\pulki\Documents\Unity Projects\Ludum-Dare-46" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
-        <e p="Bills.cs" t="Include" />
         <e p="Materials" t="Include">
           <e p="Blink.shader" t="Include" />
         </e>
-        <e p="revenuePanel.cs" t="Include" />
         <e p="Scripts" t="Include">
+          <e p="Bills.cs" t="Include" />
           <e p="BuildSystem.cs" t="Include" />
           <e p="cameraController.cs" t="Include" />
           <e p="CameraFacingBillboard.cs" t="Include" />
@@ -19,8 +18,10 @@
           <e p="CoolerUI.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
           <e p="GroundTile.cs" t="Include" />
+          <e p="Hacked.cs" t="Include" />
           <e p="ObjectPreview.cs" t="Include" />
           <e p="ObjectSelector.cs" t="Include" />
+          <e p="revenuePanel.cs" t="Include" />
           <e p="Server.cs" t="Include" />
           <e p="ServerUI.cs" t="Include" />
           <e p="Tab.cs" t="Include" />
@@ -30,6 +31,7 @@
           <e p="Fonts" t="Include">
             <e p="LiberationSans - OFL.txt" t="Include" />
           </e>
+          <e p="hackPanel.cs" t="Include" />
           <e p="Resources" t="Include">
             <e p="LineBreaking Following Characters.txt" t="Include" />
             <e p="LineBreaking Leading Characters.txt" t="Include" />

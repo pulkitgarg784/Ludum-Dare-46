@@ -5,7 +5,7 @@ using UnityEngine;
 public class ObjectSelector : MonoBehaviour
 {
 
-    public GameObject buildPanel;
+  
     public BuildSystem buildSystem;
     private bool showPanel = true;
 
@@ -16,13 +16,7 @@ public class ObjectSelector : MonoBehaviour
         // add your own preview gameobject
     {
         buildSystem.NewBuild(go);//this "Starts" a new build in the build system
-        TogglePanel();
     }
 
-    public void TogglePanel()
-    {
-        showPanel = !showPanel;
-        buildPanel.SetActive(showPanel);
-    }
 
 }

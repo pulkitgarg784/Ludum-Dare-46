@@ -218,7 +218,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 100
+  sellPrice: 75
   connectedServer: {fileID: 0}
   coolerName: cool
   raycastpt: {fileID: 1941112848508142678}
+  electricityUsage: 0.1
   coolingFactor: 0.02
+  FireParticles: {fileID: 1876375917517166, guid: ef30331bc4c461842a1da74c1c8052ab,
+    type: 3}

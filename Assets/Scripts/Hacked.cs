@@ -1,0 +1,47 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Random = UnityEngine.Random;
+
+public class Hacked : MonoBehaviour
+{
+    public float waitTime = 2;
+    
+    public GameObject hackedPanel;
+    public GameObject fixPanel;
+    public GameObject panel;
+    void Start()
+    {
+        StartCoroutine(SpawnCube());
+       // StartCoroutine(stealMoney());
+    }
+
+    private void Update()
+    {
+        GameManager.money -= Time.deltaTime * 10;//TODO: money reduction speed
+        GameManager.money -= Time.deltaTime * 10;//TODO: money reduction speed
+    }
+
+    IEnumerator SpawnCube()
+    {
+        for (int i = 0; i < Random.Range(15,20); i++)
+        {
+            
+
+            float xPos = Random.Range(200, Screen.width-200);
+            float yPos = Random.Range(200, Screen.height-200);
+            Vector3 spawnPosition = new Vector3(xPos, yPos, Random.Range(10,15));
+            GameObject spwanObj = Instantiate(hackedPanel, spawnPosition, Quaternion.identity) as GameObject;
+            spwanObj.transform.parent = panel.transform;
+            spwanObj.transform.position = spawnPosition;
+            yield return new WaitForSeconds(waitTime);
+        }
+
+        GameObject fix = Instantiate(fixPanel,new Vector3(Screen.width/2,Screen.height/2,0),Quaternion.identity,panel.transform);
+        fix.transform.SetSiblingIndex(1);
+    }
+
+
+}
+
