@@ -107,19 +107,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49eb9b241aad6a94397250e50603b9eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 100
-  sellPrice: 75
-  repairCost: 0
-  electricityUsage: 0.1
+  cost: 4000
+  sellPrice: 2000
+  repairCost: 800
+  electricityUsage: 4
   RepairMat: {fileID: 2100000, guid: 0720bb2d22f47e948a884bd9d0e81d28, type: 2}
   finalSellPrice: 0
-  Servername: Server
-  MaxSupportedVisitor: 500
+  Servername: Hooli-Endframe box
+  MaxSupportedVisitor: 5000
   currentVisitors: 0
   ServerTemp: 25
   Serverload: 0
   isHeating: 0
-  Heatingfactor: 0.01
+  Heatingfactor: 0.5
   health: 100
   coolingFactor: 0
   FireParticles: {fileID: 1273710762483042, guid: c219e4dcb49b5844691b241cd5fca2f1,
@@ -196,6 +196,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.4761905
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: 79fce1301b0ec44498ebb177e9525b01,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fbe914ee0c832b24fa8e2650a1b311e4, type: 2}
     - target: {fileID: -927199367670048503, guid: 79fce1301b0ec44498ebb177e9525b01,
         type: 3}
       propertyPath: m_Name

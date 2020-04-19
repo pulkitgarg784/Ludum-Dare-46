@@ -35,6 +35,7 @@ public class Server : MonoBehaviour
     public GameObject FireParticles;
     bool isburning;
     private bool textshown;
+    private GameObject fire;
     private void Start()
     {
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -89,32 +90,40 @@ public class Server : MonoBehaviour
         }
         if (ServerTemp>25)
         {
-            ServerTemp -= coolingFactor;//TODO: time.deltatime
+            ServerTemp -= coolingFactor*2*Time.timeScale;
         }
         if (isHeating)
         {
             if (ServerTemp<45)
             {
-                ServerTemp += Heatingfactor;//TODO:time.deltatime
+                ServerTemp += Heatingfactor*2*Time.timeScale;
             }
         }
         if (Serverload>75)
         {
             isHeating = true;
         }
+        else
+        {
+            isHeating = false;
+        }
 
         if (ServerTemp>40)
         {
-            health -= (ServerTemp - 40) / 200;
+            health -= (ServerTemp - 40) / 100;
             if (!isburning)
             {
-                GameObject fire = Instantiate(FireParticles, transform.position, Quaternion.identity,transform);
+                fire = Instantiate(FireParticles, transform.position, Quaternion.identity,transform);
                 isburning = true;
             }
         }
         else if (ServerTemp<40)
         {
-
+            isburning = false;
+            if (fire!=null)
+            {
+                Destroy(fire);
+            }
         }
         
         
@@ -161,7 +170,7 @@ public class Server : MonoBehaviour
         
         currentVisitors = 0;
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(10); //TODO: change repair time
         
         isActive = true;
         GameManager.VisitorLimit += MaxSupportedVisitor;
@@ -170,7 +179,7 @@ public class Server : MonoBehaviour
         health = 100;
         Serverload = 0;
        GetComponent<MeshRenderer>().material = currentMat;
-        _gameManager.showPrompt("Done Repairing "+Servername,1.5f);
+        _gameManager.showPrompt("Done Repairing "+Servername,3f);
         
     }
 
@@ -187,18 +196,29 @@ public class Server : MonoBehaviour
     {
         if (isActive)
         {
+            float min = 3f;
+            float max = 10f;
+            float waitTime;
+            
+            
+            waitTime =Random.Range(min, max);
+            waitTime *= GameManager.adsMultiplier;
+            
+            yield return new WaitForSeconds(waitTime); //delay in adding visitors //randomize
 
 
-            yield return new WaitForSeconds(.05f); //delay in adding visitors
-
-
-            if (currentVisitors < MaxSupportedVisitor)
+            if (currentVisitors < MaxSupportedVisitor && GameManager.adsMultiplier<0.09f)//90 perc of slider max
             {
                 currentVisitors++;
                 GameManager.TotalVisitors++;
-                Serverload = (float) currentVisitors * 100 / (float) MaxSupportedVisitor;
 
             }
+            else
+            {
+                currentVisitors--;
+                GameManager.TotalVisitors--;
+            }
+            Serverload = (float) currentVisitors * 100 / (float) MaxSupportedVisitor;
 
             StartCoroutine(increaseVisitorCount());
         }

@@ -1,19 +1,22 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 
 public class GameManager : MonoBehaviour
 {
 
+    public float StartMoney = 100f;
     public static int VisitorLimit = 0;
     public static int TotalVisitors = 0;
     public static float totalElectricityUsage = 0;
     public static float Rent = 500;
     public static bool isMonthEnd;
     public static float money = 100;
-    public static float adsMultiplier = 0.00005f;
+    public static float adsMultiplier = 0.01f;
     public Text MoneyText;
     private bool isGameover;
     public GameObject Prompt;
@@ -24,19 +27,37 @@ public class GameManager : MonoBehaviour
     public GameObject MoneyPanel;
 
     public GameObject BillPanel;
+
+
+    private int desiredSpeed;
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(RandomHack());
-
+        desiredSpeed = 1;
+        money = StartMoney;
     }
+
+    private void Awake()
+    {
+        Application.targetFrameRate = 60;            
+    }
+
 
     // Update is called once per frame
     void Update()
     {
-        money+=Time.deltaTime*TotalVisitors*adsMultiplier;//speed of money
-        MoneyText.text = "$ "+money.ToString("F2");
 
+        money+=Time.deltaTime*TotalVisitors*adsMultiplier*0.02f*Time.timeScale;//speed of money
+        MoneyText.text = "$ "+money.ToString("F2");
+        if (TotalVisitors>VisitorLimit)
+        {
+            TotalVisitors = VisitorLimit;
+        }
+        if (TotalVisitors <0)
+        {
+            TotalVisitors = 0;
+        }
         if (money<0)
         {
             money = 0;
@@ -52,12 +73,24 @@ public class GameManager : MonoBehaviour
         }
         else if(!isMonthEnd &&!isGameover)
         {
-            Time.timeScale = 1;
+            Time.timeScale = desiredSpeed;
+        }
+        if (Input.GetKeyDown(KeyCode.Comma))
+        {
+            desiredSpeed = 1;
+            showPrompt("Time Speed = 1",2f);
+        }
+        else if (Input.GetKeyDown(KeyCode.Period))
+        {
+            desiredSpeed = 5;
+            showPrompt("Time Speed = 5",2f);
+
         }
     }
 
     public void showPrompt(string prompt,float duration)
     {
+        
         StartCoroutine(PromptUser(prompt,duration));
     }
 
@@ -65,7 +98,7 @@ public class GameManager : MonoBehaviour
     {
         Prompt.SetActive(true);
         PromptText.text = prompt;
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSecondsRealtime(duration);
         PromptText.text = " ";
         Prompt.SetActive(false);
     }
@@ -81,7 +114,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(Random.Range(10,15));
 
-        if (GameManager.TotalVisitors>2500)
+        if (GameManager.TotalVisitors>1000)
         {
             if (Random.Range(0,5)==1)
             {

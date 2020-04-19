@@ -16,6 +16,7 @@ public class ServerUI : MonoBehaviour
     public Text health;
     public Text SellText;
     public Text RepairText;
+    public Button repairBtn;
     void Start()
     {
         canvas.SetActive(false);
@@ -82,6 +83,14 @@ public class ServerUI : MonoBehaviour
             health.text ="Health: "+ _server.health.ToString("F2");
             SellText.text = "Sell: $"+_server.finalSellPrice.ToString("F2");
             RepairText.text = "Repair: $"+_server.repairCost.ToString("F2");
+            if (_server.health<100)
+            {
+                repairBtn.interactable = true;
+            }
+            else
+            {
+                repairBtn.interactable = false;
+            }
         }
     }
     public void Sell()

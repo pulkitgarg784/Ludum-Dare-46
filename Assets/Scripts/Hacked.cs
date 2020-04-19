@@ -11,19 +11,20 @@ public class Hacked : MonoBehaviour
     public GameObject hackedPanel;
     public GameObject fixPanel;
     public GameObject panel;
+    private float startMoney;
     void Start()
     {
-        StartCoroutine(SpawnCube());
+        StartCoroutine(SpawnPopup());
        // StartCoroutine(stealMoney());
+       startMoney = GameManager.money;
     }
 
     private void Update()
     {
-        GameManager.money -= Time.deltaTime * 10;//TODO: money reduction speed
-        GameManager.money -= Time.deltaTime * 10;//TODO: money reduction speed
+        GameManager.money -= Time.deltaTime * startMoney * .0275f; //TODO: money reduction speed
     }
 
-    IEnumerator SpawnCube()
+    IEnumerator SpawnPopup()
     {
         for (int i = 0; i < Random.Range(15,20); i++)
         {

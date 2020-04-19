@@ -41,7 +41,8 @@ public class cooler : MonoBehaviour
     {
         if (connectedServer == null)
         {
-            Vector3 forward = raycastpt.forward * 1;//range
+            Vector3 forward = raycastpt.forward * 2;//range
+            Debug.Log("Finding server");
             Debug.DrawRay(raycastpt.position, forward, Color.green);
             RaycastHit hit;
             Ray ray =new Ray(raycastpt.position,forward);
@@ -50,7 +51,7 @@ public class cooler : MonoBehaviour
                 if (hit.collider.gameObject.GetComponent<Server>()!= null)
                 {
                     connectedServer = hit.collider.gameObject.GetComponent<Server>();
-                    connectedServer.coolingFactor += coolingFactor;//TODO:make delta time
+                    connectedServer.coolingFactor += coolingFactor;
                 }
             }
         }

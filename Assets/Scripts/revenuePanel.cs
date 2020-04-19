@@ -32,7 +32,7 @@ public class revenuePanel : MonoBehaviour
 
     public void AdsValue(float value)
     {
-        AdsText.text = value.ToString();
+        AdsText.text = "$"+value.ToString("F3")+" per visitor";
         GameManager.adsMultiplier = value;
         
     }

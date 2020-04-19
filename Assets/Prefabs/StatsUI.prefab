@@ -205,9 +205,8 @@ MonoBehaviour:
   load: {fileID: 623986874791273691}
   temp: {fileID: 623986874686185078}
   health: {fileID: 623986874226632112}
-  fact: {fileID: 0}
-  SellText: {fileID: 0}
-  RepairText: {fileID: 0}
+  SellText: {fileID: 623986875805245834}
+  RepairText: {fileID: 623986875114549588}
 --- !u!114 &1800197487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,7 +336,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 623986874473621616}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1863346075}
+        m_MethodName: Sell
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &623986874686185080
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,7 +539,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 35, y: 30}
+  m_SizeDelta: {x: 35, y: 27.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &623986874972902445
 Canvas:
@@ -966,7 +976,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 17.5, y: -32.538}
+  m_AnchoredPosition: {x: 17.5, y: -29.2}
   m_SizeDelta: {x: 30.648, y: 6.357}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &623986875810908797
@@ -1111,4 +1121,15 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 623986875883176042}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1863346075}
+        m_MethodName: Repair
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

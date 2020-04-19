@@ -6,10 +6,9 @@ using UnityEngine.UI;
 
 public class Tab : MonoBehaviour
 {
-    public GameObject serverShop;
-    public GameObject coolerShop;
-    public GameObject MoneyPanel;
 
+    public GameObject infoPanel;
+    public Text InfoText;
     public void TogglePanel(GameObject panel)
     {
         if (!GameManager.isMonthEnd)
@@ -17,6 +16,18 @@ public class Tab : MonoBehaviour
             panel.SetActive(!panel.activeSelf);
 
         }
+    }
+
+   public void SetInfoText(string info)
+    {
+        infoPanel.SetActive(true);
+        InfoText.text = info;
+        InfoText.text = InfoText.text.Replace ("\\n", "\n");
+    }
+   public void HideInfoText()
+    {
+        infoPanel.SetActive(false);
+        InfoText.text = " ";
     }
 
 
