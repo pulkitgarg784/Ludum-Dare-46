@@ -6,6 +6,7 @@
     <e p="C:\Users\pulki\Documents\Unity Projects\Ludum-Dare-46" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="Bills.cs" t="Include" />
         <e p="Materials" t="Include">
           <e p="Blink.shader" t="Include" />
         </e>

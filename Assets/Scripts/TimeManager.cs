@@ -12,17 +12,16 @@
  public int year;
  void Start()
  {
-     startHour = 1;
-     startDay = 1;
-     startMonth = 07;
+     startHour = 01;
+     startDay = 29;
+     startMonth = 12;
      startYear = 2020;
      year = startYear;
      month = startMonth;
      day = startDay;
      hour = startHour;
      year = startYear;
-     //timeMode = 3; //mode 2 and 3 for fast forwarding hours and days respectively
-     //timeScale = 200.0f; //change time speed: 200 = one hour takes 18 seconds
+
      am = true;
      noonAm = false; //true = noon is AM; option for 12 am/pm confusion
      calendarText = GameObject.Find("Calendar").GetComponent<Text>(); //create text box "Calendar" in Unity
@@ -191,6 +190,7 @@
          if (day >= 32)
          {
              month++;
+             GameManager.isMonthEnd = true;
              day = 1;
              DetermineMonth();
          }
@@ -209,12 +209,16 @@
              if (leapYear == false)
              {
                  month++;
+                 GameManager.isMonthEnd = true;
+
                  day = 1;
                  DetermineMonth();
              }
              else if (day == 30)
              {
                  month++;
+                 GameManager.isMonthEnd = true;
+
                  day = 1;
                  DetermineMonth();
              }
@@ -224,6 +228,8 @@
              if (day >= 31)
              {
                  month++;
+                 GameManager.isMonthEnd = true;
+
                  day = 1;
                  DetermineMonth();
              }
@@ -283,7 +289,7 @@
      }
      else if (timeMode == 2)
      {
-         minute+= Time.fixedDeltaTime * timeScale;
+         minute+= Time.fixedDeltaTime * timeScale*Time.timeScale;
          
          
          
@@ -323,6 +329,7 @@
          else if (day >= 28)
          {
              CalculateMonthLength();
+             //month end
          }
          else if (month >= 12)
          {

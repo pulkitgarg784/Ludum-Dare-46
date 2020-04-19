@@ -22,6 +22,7 @@ public class revenuePanel : MonoBehaviour
         CurrentVisitor.text = "Current Visitors: "+GameManager.TotalVisitors.ToString();
         MaxVisitor.text = "Visitors Limit: "+GameManager.VisitorLimit.ToString();
         Money.text = "Money: "+GameManager.money.ToString("F2");
+
     }
 
     public void Back()
@@ -33,5 +34,6 @@ public class revenuePanel : MonoBehaviour
     {
         AdsText.text = value.ToString();
         GameManager.adsMultiplier = value;
+        
     }
 }

@@ -12,7 +12,11 @@ public class Tab : MonoBehaviour
 
     public void TogglePanel(GameObject panel)
     {
-        panel.SetActive(!panel.activeSelf);
+        if (!GameManager.isMonthEnd)
+        {
+            panel.SetActive(!panel.activeSelf);
+
+        }
     }
 
 

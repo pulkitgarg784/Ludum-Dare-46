@@ -10,7 +10,7 @@ public class cooler : MonoBehaviour
     public Server connectedServer;
     public string coolerName;
     public Transform raycastpt;
-
+    public float electricityUsage = .5f;
     public float coolingFactor = 0.01f;
     private GameManager _gameManager;
 
@@ -18,6 +18,7 @@ public class cooler : MonoBehaviour
     void Start()
     {
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        StartCoroutine(UseElectricity());
 
         if (GameManager.money>=cost)
         {
@@ -54,6 +55,7 @@ public class cooler : MonoBehaviour
 
     private void OnDestroy()
     {
+
         if (connectedServer!=null)
         {
             connectedServer.coolingFactor -= coolingFactor;
@@ -65,6 +67,15 @@ public class cooler : MonoBehaviour
         GameManager.money += sellPrice;
         Destroy(gameObject);
         _gameManager.showPrompt("You sold "+coolerName+" for $"+ sellPrice.ToString("F2"),2);
+    }
+    IEnumerator UseElectricity()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
+            GameManager.totalElectricityUsage += electricityUsage;
+            
+        }
     }
 
 

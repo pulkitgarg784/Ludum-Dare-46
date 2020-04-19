@@ -10,6 +10,8 @@ public class Server : MonoBehaviour
     public float cost;
     public float sellPrice = 75f;
     public float repairCost;
+    public float electricityUsage = 1f;
+
     public Material RepairMat;
     public Material overheatMat;
     private Material currentMat;
@@ -32,7 +34,7 @@ public class Server : MonoBehaviour
     private void Start()
     {
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-
+        
         currentMat = GetComponent<MeshRenderer>().material;
         if (sellPrice == 0)
         {
@@ -45,6 +47,7 @@ public class Server : MonoBehaviour
         }
         GameManager.VisitorLimit += MaxSupportedVisitor;
         StartCoroutine(increaseVisitorCount());
+        StartCoroutine(UseElectricity());
         if (GameManager.money>=cost)
         {
             GameManager.money -= cost;
@@ -60,6 +63,8 @@ public class Server : MonoBehaviour
 
     private void Update()
     {
+        
+
         finalSellPrice = health / 100 * sellPrice;
         if (health<=0)
         {
@@ -113,6 +118,7 @@ public class Server : MonoBehaviour
     {
         GameManager.TotalVisitors -= currentVisitors;
         GameManager.VisitorLimit -= MaxSupportedVisitor;
+
         
     }
 
@@ -138,6 +144,7 @@ public class Server : MonoBehaviour
         GetComponent<MeshRenderer>().material = RepairMat;
         GameManager.TotalVisitors -= currentVisitors;
         GameManager.VisitorLimit -= MaxSupportedVisitor;
+        
         currentVisitors = 0;
 
         yield return new WaitForSeconds(2);
@@ -153,6 +160,15 @@ public class Server : MonoBehaviour
         
     }
 
+    IEnumerator UseElectricity()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
+            GameManager.totalElectricityUsage += electricityUsage;
+            
+        }
+    }
     public IEnumerator increaseVisitorCount()
     {
         if (isActive)
