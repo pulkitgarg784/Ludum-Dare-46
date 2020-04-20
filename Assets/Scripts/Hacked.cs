@@ -30,8 +30,8 @@ public class Hacked : MonoBehaviour
         {
             
 
-            float xPos = Random.Range(200, Screen.width-200);
-            float yPos = Random.Range(200, Screen.height-200);
+            float xPos = Random.Range(300, Screen.width-300);
+            float yPos = Random.Range(300, Screen.height-300);
             Vector3 spawnPosition = new Vector3(xPos, yPos, Random.Range(10,15));
             GameObject spwanObj = Instantiate(hackedPanel, spawnPosition, Quaternion.identity) as GameObject;
             spwanObj.transform.parent = panel.transform;

@@ -12,6 +12,10 @@
  public int year;
  void Start()
  {
+     startHour = 01;
+     startDay = 29;
+     startMonth = 4;
+     startYear = 2020;
      year = startYear;
      month = startMonth;
      day = startDay;

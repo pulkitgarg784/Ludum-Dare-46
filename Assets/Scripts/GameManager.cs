@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -108,17 +109,17 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game Over");
         isGameover = true;
         Time.timeScale = 0;
+        SceneManager.LoadScene(3);
     }
 
     IEnumerator RandomHack()
     {
-        yield return new WaitForSeconds(Random.Range(10,15));
+        yield return new WaitForSeconds(10);
 
-        if (GameManager.TotalVisitors>1000)
+        if (GameManager.TotalVisitors>1500)
         {
-            if (Random.Range(0,5)==1)
+            if (Random.Range(0,7)==1)
             {
-                Debug.Log("<color=green>Hack</color>",this);
                 GameObject hackpanel =  Instantiate(HackPanel, UICanvas.transform.position, Quaternion.identity,UICanvas.transform);
                 hackpanel.transform.SetAsLastSibling();
 
