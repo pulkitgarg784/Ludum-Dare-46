@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Game Over");
         isGameover = true;
-        Time.timeScale = 0;
+        Time.timeScale = 1;
         SceneManager.LoadScene(3);
     }
 

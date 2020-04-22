@@ -13,7 +13,7 @@
  void Start()
  {
      startHour = 01;
-     startDay = 29;
+     startDay = 1;
      startMonth = 4;
      startYear = 2020;
      year = startYear;
@@ -136,47 +136,47 @@
      {
          monthName = "Jan";
      }
-     if (month == 2)
+     else if (month == 2)
      {
          monthName = "Feb";
      }
-     if (month == 3)
+     else if (month == 3)
      {
          monthName = "Mar";
      }
-     if (month == 4)
+     else if (month == 4)
      {
          monthName = "Apr";
      }
-     if (month == 5)
+     else if (month == 5)
      {
          monthName = "May";
      }
-     if (month == 6)
+     else if (month == 6)
      {
          monthName = "Jun";
      }
-     if (month == 7)
+     else if (month == 7)
      {
          monthName = "Jul";
      }
-     if (month == 8)
+     else if (month == 8)
      {
          monthName = "Aug";
      }
-     if (month == 9)
+     else if (month == 9)
      {
          monthName = "Sep";
      }
-     if (month == 10)
+     else if (month == 10)
      {
          monthName = "Oct";
      }
-     if (month == 11)
+     else if (month == 11)
      {
          monthName = "Nov";
      }
-     if (month == 12)
+     else if (month == 12)
      {
          monthName = "Dec";
      }
@@ -190,49 +190,56 @@
          if (day >= 32)
          {
              month++;
-             GameManager.isMonthEnd = true;
              day = 1;
              DetermineMonth();
+             GameManager.isMonthEnd = true;
+
          }
      }
+
      if (month == 2)
      {
          if (day >= 29)
          {
-             //leap year
+             leapYear = false;
              if (year % 4 == 0 && year % 100 != 0)
              {
                  TextCallFunction();
                  DetermineMonth();
                  leapYear = true;
              }
+
              if (leapYear == false)
              {
                  month++;
-                 GameManager.isMonthEnd = true;
 
                  day = 1;
                  DetermineMonth();
+                 GameManager.isMonthEnd = true;
+
              }
              else if (day == 30)
              {
                  month++;
-                 GameManager.isMonthEnd = true;
 
                  day = 1;
                  DetermineMonth();
+                 GameManager.isMonthEnd = true;
+
              }
          }
-         if (month == 4 || month == 6 || month == 9 || month == 11)
-         {
-             if (day >= 31)
-             {
-                 month++;
-                 GameManager.isMonthEnd = true;
+     }
 
-                 day = 1;
-                 DetermineMonth();
-             }
+     if (month == 4 || month == 6 || month == 9 || month == 11)
+     {
+         if (day >= 31)
+         {
+             month++;
+
+             day = 1;
+             DetermineMonth();
+             GameManager.isMonthEnd = true;
+
          }
      }
  }
@@ -299,7 +306,7 @@
              second = 0;
              TextCallFunction();
          }
-         else if (minute >= 60)
+         if (minute >= 60)
          {
              if (hour <= 12 && am == true)
              {
@@ -326,12 +333,12 @@
              minute = 0;
              TextCallFunction();
          }
-         else if (day >= 28)
+         if (day >= 28)
          {
              CalculateMonthLength();
              //month end
          }
-         else if (month >= 12)
+         if (month > 12)
          {
              month = 1;
              year++;
